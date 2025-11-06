@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(pnpm run dev:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(npx convex:*)",
+      "mcp__convex__status",
+      "mcp__convex__envList",
+      "mcp__convex__functionSpec"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "shadcn",
+    "convex"
+  ]
+}
