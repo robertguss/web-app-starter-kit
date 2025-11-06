@@ -1,5 +1,9 @@
 # Next.js & Convex Starter Kit
 
+## Convex
+
+- [Convex Docs](https://docs.convex.dev)
+
 ## Better Auth Setup
 
 - [Better Auth + Convex Docs](https://convex-better-auth.netlify.app/framework-guides/next#installation)
