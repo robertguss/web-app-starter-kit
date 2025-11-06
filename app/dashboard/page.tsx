@@ -11,6 +11,7 @@ import {
 import data from "./data.json"
 
 export default function Page() {
+  // Route is protected by middleware at /middleware.ts
   return (
     <SidebarProvider
       style={

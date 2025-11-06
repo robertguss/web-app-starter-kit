@@ -6,6 +6,7 @@ import { query } from "./_generated/server";
 import { betterAuth } from "better-auth";
 
 const siteUrl = process.env.SITE_URL!;
+const secret = process.env.BETTER_AUTH_SECRET!;
 
 // The component client has methods needed for integrating Convex with Better Auth,
 // as well as helper methods for general use.
@@ -21,7 +22,9 @@ export const createAuth = (
     logger: {
       disabled: optionsOnly,
     },
+    secret,
     baseURL: siteUrl,
+    trustedOrigins: [siteUrl],
     database: authComponent.adapter(ctx),
     // Configure simple, non-verified email/password to get started
     emailAndPassword: {
