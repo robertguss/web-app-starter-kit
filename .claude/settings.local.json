@@ -7,7 +7,9 @@
       "Bash(npx convex:*)",
       "mcp__convex__status",
       "mcp__convex__envList",
-      "mcp__convex__functionSpec"
+      "mcp__convex__functionSpec",
+      "Bash(cat:*)",
+      "Bash(find:*)"
     ]
   },
   "enabledMcpjsonServers": [
