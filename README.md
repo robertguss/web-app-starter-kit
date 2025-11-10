@@ -6,9 +6,37 @@ A modern, production-ready starter kit for building full-stack applications with
 [![Next.js](https://img.shields.io/badge/Next.js-16.x-black.svg)](https://nextjs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **Perfect for**: Rapidly prototyping full-stack applications, learning modern web development patterns, or starting your next SaaS project with a solid foundation.
+---
 
-> **Stay Updated**: Subscribe to the [Refactoring AI Newsletter](https://refactoringai.substack.com/) for tutorials, AI development insights, and tips for using this starter kit effectively.
+<div align="center">
+
+## 📬 Join the Refactoring AI Newsletter
+
+[![Subscribe](https://img.shields.io/badge/Subscribe-Refactoring%20AI-blue?style=for-the-badge&logo=substack&logoColor=white)](https://refactoringai.substack.com/)
+
+<a href="https://refactoringai.substack.com/">
+  <img src="./public/refactoring-ai.webp" alt="Refactoring AI Newsletter" width="600px" />
+</a>
+
+### Get Weekly AI Development Insights Delivered to Your Inbox
+
+**Master modern full-stack development with AI-powered tools and techniques**
+
+✨ **What You'll Learn:**
+
+- 🚀 Build full-stack AI applications with Next.js, Convex, and modern tools
+- 🤖 Use AI coding assistants like Claude Code effectively
+- ⚡ Real-time database patterns and serverless architecture
+- 🎯 Ship products faster with proven starter kit patterns
+- 💡 Exclusive tutorials and deep-dives into this starter kit
+
+[**→ Subscribe Now (It's Free!)**](https://refactoringai.substack.com/)
+
+</div>
+
+---
+
+> **Perfect for**: Rapidly prototyping full-stack applications, learning modern web development patterns, or starting your next SaaS project with a solid foundation.
 
 ---
 
@@ -33,24 +61,28 @@ A modern, production-ready starter kit for building full-stack applications with
 ### Core Capabilities
 
 - **Authentication** - Complete auth system with Better Auth + Convex integration
+
   - Email/password authentication (no verification required for quick setup)
   - Protected routes with middleware
   - Session management
   - Ready for OAuth providers (see [Roadmap](./ROADMAP.md))
 
 - **Real-time Database** - Powered by Convex
+
   - Serverless backend with zero infrastructure management
   - Automatic TypeScript generation
   - Real-time subscriptions out of the box
   - ACID transactions
 
 - **Modern UI Components** - 20+ shadcn/ui components pre-installed
+
   - Buttons, Forms, Modals, Tables, Charts, Sidebar
   - Fully customizable with Tailwind CSS 4
   - Dark mode support with next-themes
   - Responsive design patterns
 
 - **Testing Infrastructure** - Complete testing setup
+
   - Vitest for unit and integration tests
   - convex-test for isolated backend testing
   - Example tests included
@@ -97,6 +129,7 @@ pnpm run dev
 Open [http://localhost:3000](http://localhost:3000) in your browser. You should see the landing page!
 
 **Next steps:**
+
 1. Create an account at `/signup`
 2. Log in and explore the dashboard
 3. Check out the example Convex functions in `convex/myFunctions.ts`
@@ -141,18 +174,18 @@ The BMAD Method is a comprehensive framework that combines human expertise with 
 
 ## Tech Stack
 
-| Category | Technology | Version | Purpose |
-|----------|-----------|---------|---------|
-| **Framework** | Next.js | 16.x | React framework with App Router |
-| **Frontend** | React | 19.x | UI library |
-| **Language** | TypeScript | 5.x | Type-safe JavaScript |
-| **Backend** | Convex | 1.28+ | Real-time serverless database |
-| **Auth** | Better Auth | 1.3+ | Authentication & session management |
-| **Styling** | Tailwind CSS | 4.x | Utility-first CSS framework |
-| **Components** | shadcn/ui | Latest | Radix UI + Tailwind components |
-| **Icons** | Lucide React | Latest | Beautiful consistent icons |
-| **Testing** | Vitest | 4.x | Fast unit testing framework |
-| **Package Manager** | pnpm | 8.x+ | Fast, disk-efficient package manager |
+| Category            | Technology   | Version | Purpose                              |
+| ------------------- | ------------ | ------- | ------------------------------------ |
+| **Framework**       | Next.js      | 16.x    | React framework with App Router      |
+| **Frontend**        | React        | 19.x    | UI library                           |
+| **Language**        | TypeScript   | 5.x     | Type-safe JavaScript                 |
+| **Backend**         | Convex       | 1.28+   | Real-time serverless database        |
+| **Auth**            | Better Auth  | 1.3+    | Authentication & session management  |
+| **Styling**         | Tailwind CSS | 4.x     | Utility-first CSS framework          |
+| **Components**      | shadcn/ui    | Latest  | Radix UI + Tailwind components       |
+| **Icons**           | Lucide React | Latest  | Beautiful consistent icons           |
+| **Testing**         | Vitest       | 4.x     | Fast unit testing framework          |
+| **Package Manager** | pnpm         | 8.x+    | Fast, disk-efficient package manager |
 
 ### Why These Technologies?
 
@@ -237,17 +270,20 @@ ai-starter-kit/
 Comprehensive guides for all aspects of the starter kit:
 
 ### Getting Started
+
 - [Quick Start Guide](./docs/QUICK_START.md) - Get running in 5 minutes
 - [Detailed Setup](./docs/SETUP.md) - Complete installation & configuration
 - [Architecture Overview](./docs/ARCHITECTURE.md) - How everything fits together
 
 ### Development
+
 - [Development Guide](./docs/DEVELOPMENT.md) - Adding features, modifying schema
 - [API Reference](./docs/API.md) - Convex functions documentation
 - [Database Guide](./docs/DATABASE.md) - Schema, indexes, and patterns
 - [Authentication](./docs/AUTHENTICATION.md) - Auth flows and customization
 
 ### Deployment & Help
+
 - [Deployment Guide](./docs/DEPLOYMENT.md) - Deploy to production (Vercel)
 - [Troubleshooting](./docs/TROUBLESHOOTING.md) - Common issues and solutions
 - [IDE Tools](./docs/IDE_TOOLS.md) - Optional development enhancements
@@ -295,11 +331,13 @@ npx convex dashboard
 ### Environment Variables
 
 Create a `.env.local` file for Next.js (auto-generated by Convex):
+
 ```bash
 NEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud
 ```
 
 Set Convex environment variables:
+
 ```bash
 npx convex env set BETTER_AUTH_SECRET $(openssl rand -base64 32)
 npx convex env set SITE_URL http://localhost:3000
@@ -325,11 +363,13 @@ pnpm run test:coverage
 ```
 
 **Example test structure:**
+
 - `convex/myFunctions.test.ts` - Example Convex function tests
 - Tests run in isolated environment with mock database
 - See [convex/TESTING.md](./convex/TESTING.md) for comprehensive testing guide
 
 **Key patterns:**
+
 ```typescript
 import { convexTest } from "convex-test";
 import { modules } from "./test.setup";
@@ -349,21 +389,25 @@ it("should test something", async () => {
 ### Deploy to Vercel (Recommended)
 
 1. **Push to GitHub**
+
    ```bash
    git push origin main
    ```
 
 2. **Deploy Frontend**
+
    - Go to [vercel.com](https://vercel.com)
    - Import your GitHub repository
    - Vercel will auto-detect Next.js
 
 3. **Deploy Backend**
+
    ```bash
    npx convex deploy
    ```
 
 4. **Set Production Environment Variables**
+
    ```bash
    npx convex env set BETTER_AUTH_SECRET $(openssl rand -base64 32) --prod
    npx convex env set SITE_URL https://your-domain.vercel.app --prod
