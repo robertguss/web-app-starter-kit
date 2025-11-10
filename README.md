@@ -1,4 +1,4 @@
-# Next.js & Convex Starter Kit
+# AI Starter Kit
 
 ## Convex
 
