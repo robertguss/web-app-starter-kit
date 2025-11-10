@@ -8,12 +8,15 @@ A modern, production-ready starter kit for building full-stack applications with
 
 > **Perfect for**: Rapidly prototyping full-stack applications, learning modern web development patterns, or starting your next SaaS project with a solid foundation.
 
+> **Stay Updated**: Subscribe to the [Refactoring AI Newsletter](https://refactoringai.substack.com/) for tutorials, AI development insights, and tips for using this starter kit effectively.
+
 ---
 
 ## Table of Contents
 
 - [Features](#features)
 - [Quick Start](#quick-start)
+- [Recommended Development Workflow](#recommended-development-workflow)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Documentation](#documentation)
@@ -100,6 +103,39 @@ Open [http://localhost:3000](http://localhost:3000) in your browser. You should 
 4. Read the [Setup Guide](./docs/SETUP.md) for detailed configuration
 
 > **Tip**: See [docs/QUICK_START.md](./docs/QUICK_START.md) for a more detailed quick start guide with troubleshooting.
+
+---
+
+## Recommended Development Workflow
+
+### Building with AI Coding Agents
+
+This starter kit is designed to work seamlessly with AI coding agents like **Claude Code**. For the best development experience, we recommend following the **[BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD)** (Breakthrough Method for Agile AI Driven Development).
+
+**What is BMAD?**
+
+The BMAD Method is a comprehensive framework that combines human expertise with AI capabilities to build software more effectively. It provides:
+
+- **19+ specialized AI agents** and **50+ workflows** for different development scenarios
+- **Three planning tracks** that automatically adapt based on your project needs:
+  - **Quick Flow Track** - Bug fixes and small features
+  - **BMad Method Track** - Full products and platforms (recommended for this starter kit)
+  - **Enterprise Method Track** - Complex systems with security and compliance needs
+
+**Why BMAD with this Starter Kit?**
+
+- Accelerates feature development while maintaining code quality
+- Provides structured workflows for common tasks (auth, database, UI components)
+- Helps AI agents understand your project structure and patterns
+- Guides reflective thinking that brings out better architectural decisions
+
+**Getting Started with BMAD:**
+
+1. Review the [BMAD Method documentation](https://github.com/bmad-code-org/BMAD-METHOD)
+2. Use the `CLAUDE.md` file in this repo (pre-configured for Claude Code)
+3. Follow the BMad Method Track for adding new features to your application
+
+> **Note**: While BMAD is recommended, it's entirely optional. This starter kit works great with any development workflow or AI coding assistant.
 
 ---
 
