@@ -18,17 +18,15 @@ A modern, production-ready starter kit for building full-stack applications with
   <img src="./public/refactoring-ai.webp" alt="Refactoring AI Newsletter" width="600px" />
 </a>
 
-### Get Weekly AI Development Insights Delivered to Your Inbox
+### I teach developers how to ship their ideas in days with AI
 
 **Master modern full-stack development with AI-powered tools and techniques**
 
 ✨ **What You'll Learn:**
 
-- 🚀 Build full-stack AI applications with Next.js, Convex, and modern tools
-- 🤖 Use AI coding assistants like Claude Code effectively
-- ⚡ Real-time database patterns and serverless architecture
-- 🎯 Ship products faster with proven starter kit patterns
-- 💡 Exclusive tutorials and deep-dives into this starter kit
+- 🚀 I’ve taught over 50,000 developers to date.
+- 🎯 Top 1% TypeScript engineers globally on GitHub.
+- 🤖 Learn how to use AI coding agents like Claude Code effectively
 
 [**→ Subscribe Now (It's Free!)**](https://refactoringai.substack.com/)
 
