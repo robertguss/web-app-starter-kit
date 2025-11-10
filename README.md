@@ -18,15 +18,17 @@ A modern, production-ready starter kit for building full-stack applications with
   <img src="./public/refactoring-ai.webp" alt="Refactoring AI Newsletter" width="600px" />
 </a>
 
-### I teach developers how to ship their ideas in days with AI
+<h3>I teach developers how to ship their ideas in days with AI</h3>
 
-**Master modern full-stack development with AI-powered tools and techniques**
+<p><strong>Master modern full-stack development with AI-powered tools and techniques</strong></p>
 
-✨ **What You'll Learn:**
+<p><strong>✨ What You'll Learn:</strong></p>
 
-- 🚀 I’ve taught over 50,000 developers to date.
-- 🎯 Top 1% TypeScript engineers globally on GitHub.
-- 🤖 Learn how to use AI coding agents like Claude Code effectively
+<ul style="list-style-position: inside; text-align: center;">
+  <li>🚀 I've taught over 50,000 developers to date.</li>
+  <li>🎯 Top 1% TypeScript engineers globally on GitHub.</li>
+  <li>🤖 Learn how to use AI coding agents like Claude Code effectively</li>
+</ul>
 
 [**→ Subscribe Now (It's Free!)**](https://refactoringai.substack.com/)
 
@@ -42,20 +44,22 @@ A modern, production-ready starter kit for building full-stack applications with
 
 <div align="center">
 
-### [SocialPost](https://github.com/robertguss/social_post) - Real-World Production Application
+<h3><a href="https://github.com/robertguss/social_post">SocialPost</a> - Real-World Production Application</h3>
 
 [![GitHub](https://img.shields.io/badge/View_on_GitHub-SocialPost-181717?style=for-the-badge&logo=github)](https://github.com/robertguss/social_post)
 
-**See this starter kit in action!** SocialPost is a full-featured social media management tool built entirely with this stack.
+<p><strong>See this starter kit in action!</strong> SocialPost is a full-featured social media management tool built entirely with this stack.</p>
 
-**Features:**
+<p><strong>Features:</strong></p>
 
-- 📝 Create and schedule posts across multiple social platforms
-- 📊 Analytics dashboard with real-time engagement metrics
-- 🎨 Rich media support (images, videos, carousel posts)
-- 📅 Calendar view for content planning
-- 🔄 Real-time sync across all your social accounts
-- 🤖 AI-powered post suggestions and optimization
+<ul style="list-style-position: inside; text-align: center;">
+  <li>📝 Create and schedule posts across multiple social platforms</li>
+  <li>📊 Analytics dashboard with real-time engagement metrics</li>
+  <li>🎨 Rich media support (images, videos, carousel posts)</li>
+  <li>📅 Calendar view for content planning</li>
+  <li>🔄 Real-time sync across all your social accounts</li>
+  <li>🤖 AI-powered post suggestions and optimization</li>
+</ul>
 
 [**→ Explore SocialPost Source Code**](https://github.com/robertguss/social_post)
 
