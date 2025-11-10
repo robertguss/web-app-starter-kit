@@ -46,14 +46,14 @@ This document explains the system architecture, design patterns, and key decisio
 
 ### Layer Responsibilities
 
-| Layer | Responsibility | Technologies |
-|-------|---------------|--------------|
-| **Presentation** | UI rendering, user interactions | React 19, shadcn/ui, Tailwind |
-| **Application** | Business logic, routing, state management | Next.js 16, React hooks |
-| **API** | Client-server communication | Convex Client, WebSocket |
-| **Backend** | Data processing, auth, business rules | Convex functions (Query/Mutation/Action) |
-| **Database** | Data persistence, real-time subscriptions | Convex database (PostgreSQL-compatible) |
-| **Auth** | Authentication, session management | Better Auth + Convex component |
+| Layer            | Responsibility                            | Technologies                             |
+| ---------------- | ----------------------------------------- | ---------------------------------------- |
+| **Presentation** | UI rendering, user interactions           | React 19, shadcn/ui, Tailwind            |
+| **Application**  | Business logic, routing, state management | Next.js 16, React hooks                  |
+| **API**          | Client-server communication               | Convex Client, WebSocket                 |
+| **Backend**      | Data processing, auth, business rules     | Convex functions (Query/Mutation/Action) |
+| **Database**     | Data persistence, real-time subscriptions | Convex database (PostgreSQL-compatible)  |
+| **Auth**         | Authentication, session management        | Better Auth + Convex component           |
 
 ---
 
@@ -105,6 +105,7 @@ RootLayout (app/layout.tsx)
 4. **Auth State**: Managed by Better Auth + Convex
 
 Example reactive data flow:
+
 ```typescript
 // Component automatically re-renders when data changes
 const numbers = useQuery(api.myFunctions.listNumbers, { count: 10 });
@@ -151,12 +152,13 @@ export default defineSchema({
     createdAt: v.number(),
     // ...
   })
-    .index("by_field", ["field"])  // Fast lookups
+    .index("by_field", ["field"]) // Fast lookups
     .searchIndex("search_field", { searchField: "field" }),
 });
 ```
 
 **Best Practices:**
+
 - Define indexes for common queries
 - Use descriptive index names (e.g., `by_userId_and_status`)
 - Add search indexes for text search needs
@@ -292,18 +294,21 @@ await addNumber({ value: 42 });
 ### Why Convex?
 
 **Traditional Stack:**
+
 ```
 Frontend → REST/GraphQL API → Server → Database
          ↓ Manual caching, polling, or websockets
 ```
 
 **With Convex:**
+
 ```
 Frontend ← WebSocket → Convex (Backend + Database unified)
          ↓ Automatic real-time updates
 ```
 
 **Benefits:**
+
 - **No API layer to build**: Define functions, call them directly
 - **Real-time by default**: All queries auto-update
 - **Type-safe**: TypeScript from DB to frontend
@@ -315,6 +320,7 @@ Frontend ← WebSocket → Convex (Backend + Database unified)
 Alternatives considered: NextAuth, Clerk, Auth0
 
 **Why Better Auth:**
+
 - ✅ Native Convex integration
 - ✅ No external auth service required
 - ✅ Full control over auth logic
@@ -335,6 +341,7 @@ Alternatives considered: NextAuth, Clerk, Auth0
 Alternatives: Material UI, Ant Design, Chakra UI
 
 **Why shadcn/ui:**
+
 - ✅ Copy-paste components you own
 - ✅ Built on Radix UI (accessible)
 - ✅ Tailwind CSS for customization

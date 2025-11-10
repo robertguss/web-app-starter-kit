@@ -21,11 +21,13 @@ Before you begin, make sure you have the following installed:
 ### Required
 
 - ✅ **Node.js** 18.x or later ([Download here](https://nodejs.org/))
+
   ```bash
   node --version  # Should be 18.x or higher
   ```
 
 - ✅ **pnpm** (recommended) or npm
+
   ```bash
   # Install pnpm globally if you don't have it
   npm install -g pnpm
@@ -52,6 +54,7 @@ cd ai-starter-kit
 ```
 
 Or if you've already downloaded it:
+
 ```bash
 cd ai-starter-kit
 ```
@@ -102,6 +105,7 @@ npx convex env set SITE_URL http://localhost:3000
 ```
 
 **What these do:**
+
 - `BETTER_AUTH_SECRET`: Encryption key for session tokens and hashes
 - `SITE_URL`: Base URL for authentication callbacks and redirects
 
@@ -114,6 +118,7 @@ pnpm run dev
 ```
 
 This starts both:
+
 - **Next.js frontend** on `http://localhost:3000`
 - **Convex backend** (if not already running)
 
@@ -142,6 +147,7 @@ This starts both:
    - You should see your project and the tables created by Better Auth
 
 5. **Run tests** (optional but recommended):
+
    ```bash
    # First, generate Convex types
    npx convex codegen
@@ -228,6 +234,7 @@ const greeting = useQuery(api.myFunctions.sayHello, { name: "World" });
 ### Problem: `npx convex dev` fails
 
 **Solution:**
+
 - Make sure you're connected to the internet
 - Check that port 3210 isn't already in use
 - Try: `npx convex dev --admin-key <key>` if you have credentials
@@ -235,6 +242,7 @@ const greeting = useQuery(api.myFunctions.sayHello, { name: "World" });
 ### Problem: `NEXT_PUBLIC_CONVEX_URL` not found
 
 **Solution:**
+
 - Make sure `.env.local` exists in the project root
 - Run `npx convex dev` again - it auto-generates this file
 - Restart your Next.js dev server after the file is created
@@ -242,6 +250,7 @@ const greeting = useQuery(api.myFunctions.sayHello, { name: "World" });
 ### Problem: "Unauthorized" or auth errors
 
 **Solution:**
+
 - Verify environment variables are set:
   ```bash
   npx convex env list
@@ -252,6 +261,7 @@ const greeting = useQuery(api.myFunctions.sayHello, { name: "World" });
 ### Problem: Port 3000 already in use
 
 **Solution:**
+
 - Stop other processes on port 3000, or
 - Run Next.js on a different port:
   ```bash
@@ -262,9 +272,10 @@ const greeting = useQuery(api.myFunctions.sayHello, { name: "World" });
   npx convex env set SITE_URL http://localhost:3001
   ```
 
-### Problem: Tests fail with "Cannot find _generated"
+### Problem: Tests fail with "Cannot find \_generated"
 
 **Solution:**
+
 - Run Convex codegen first:
   ```bash
   npx convex codegen
@@ -274,6 +285,7 @@ const greeting = useQuery(api.myFunctions.sayHello, { name: "World" });
 ### Problem: `pnpm install` fails
 
 **Solution:**
+
 - Try clearing the cache:
   ```bash
   pnpm store prune

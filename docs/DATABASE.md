@@ -15,7 +15,7 @@ The database schema is defined in `convex/schema.ts`. Convex uses a NoSQL docume
 ```typescript
 numbers: defineTable({
   value: v.number(),
-})
+});
 ```
 
 Used for demonstration in `convex/myFunctions.ts`.
@@ -64,6 +64,7 @@ todos: defineTable({
 ```
 
 **Index types:**
+
 - **Regular index** - For exact matches and range queries
 - **Search index** - For full-text search
 
@@ -74,21 +75,21 @@ todos: defineTable({
 ### Basic Types
 
 ```typescript
-v.string()          // Text
-v.number()          // Numbers (including floats)
-v.boolean()         // true/false
-v.null()            // null value
-v.int64()           // Large integers (use instead of BigInt)
+v.string(); // Text
+v.number(); // Numbers (including floats)
+v.boolean(); // true/false
+v.null(); // null value
+v.int64(); // Large integers (use instead of BigInt)
 ```
 
 ### Complex Types
 
 ```typescript
-v.array(v.string())                    // Array of strings
-v.object({ name: v.string() })         // Object with fields
-v.union(v.string(), v.number())        // Either string or number
-v.optional(v.string())                 // Optional field
-v.id("tableName")                      // Reference to another table
+v.array(v.string()); // Array of strings
+v.object({ name: v.string() }); // Object with fields
+v.union(v.string(), v.number()); // Either string or number
+v.optional(v.string()); // Optional field
+v.id("tableName"); // Reference to another table
 ```
 
 ### Example
@@ -150,10 +151,7 @@ const completedTodos = await ctx.db
 ### Limit Results
 
 ```typescript
-const latestTodos = await ctx.db
-  .query("todos")
-  .order("desc")
-  .take(10);
+const latestTodos = await ctx.db.query("todos").order("desc").take(10);
 ```
 
 ### Search

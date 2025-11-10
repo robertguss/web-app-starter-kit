@@ -24,6 +24,7 @@ npx convex deploy
 ```
 
 This:
+
 - Creates a production Convex deployment
 - Pushes your schema and functions
 - Returns a production URL (e.g., `https://prod-abc123.convex.cloud`)
@@ -55,6 +56,7 @@ npx convex dashboard --prod
 ### Option 1: Deploy via Vercel Dashboard (Easiest)
 
 1. **Push to GitHub**
+
    ```bash
    git add .
    git commit -m "Prepare for deployment"
@@ -77,6 +79,7 @@ npx convex dashboard --prod
    - Get your production URL (e.g., `https://your-app.vercel.app`)
 
 5. **Update Convex SITE_URL**
+
    ```bash
    npx convex env set SITE_URL https://your-app.vercel.app --prod
    ```
@@ -192,6 +195,7 @@ npx convex env list --prod
 ### Automatic Deployments
 
 Vercel automatically deploys on:
+
 - **Push to main branch** → Production deployment
 - **Push to other branches** → Preview deployment
 
@@ -251,6 +255,7 @@ npx convex logs --prod --tail
 ### Authentication not working in production
 
 **Solution:**
+
 1. Check `SITE_URL` matches your production domain
 2. Verify `BETTER_AUTH_SECRET` is set in production
 3. Clear cookies and try again
@@ -258,6 +263,7 @@ npx convex logs --prod --tail
 ### Database queries failing
 
 **Solution:**
+
 1. Run `npx convex deploy` to push latest schema
 2. Check Convex dashboard for function errors
 3. Verify indexes are created
@@ -265,6 +271,7 @@ npx convex logs --prod --tail
 ### Build fails on Vercel
 
 **Solution:**
+
 1. Check build logs in Vercel
 2. Ensure `package.json` has correct dependencies
 3. Try building locally: `pnpm run build`
@@ -276,6 +283,7 @@ npx convex logs --prod --tail
 ### Rollback Frontend
 
 In Vercel Dashboard:
+
 1. Go to Deployments
 2. Find previous successful deployment
 3. Click "..." → "Promote to Production"

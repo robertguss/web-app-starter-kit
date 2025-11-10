@@ -45,18 +45,21 @@ Complete installation and configuration guide for the AI Starter Kit. This guide
 ### Step 1: Clone the Repository
 
 **Option A: HTTPS (Recommended)**
+
 ```bash
 git clone https://github.com/robertguss/ai-starter-kit.git
 cd ai-starter-kit
 ```
 
 **Option B: SSH (If you have GitHub SSH keys)**
+
 ```bash
 git clone git@github.com:robertguss/ai-starter-kit.git
 cd ai-starter-kit
 ```
 
 **Option C: Download ZIP**
+
 1. Go to https://github.com/robertguss/ai-starter-kit
 2. Click "Code" → "Download ZIP"
 3. Extract and navigate to the folder
@@ -64,6 +67,7 @@ cd ai-starter-kit
 ### Step 2: Install Node.js (If Not Already Installed)
 
 Check your Node version:
+
 ```bash
 node --version
 ```
@@ -71,6 +75,7 @@ node --version
 If you need to install or upgrade Node.js:
 
 - **macOS**: Use [Homebrew](https://brew.sh/)
+
   ```bash
   brew install node@20
   ```
@@ -78,6 +83,7 @@ If you need to install or upgrade Node.js:
 - **Windows**: Download from [nodejs.org](https://nodejs.org/)
 
 - **Linux**: Use your package manager
+
   ```bash
   # Ubuntu/Debian
   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
@@ -110,6 +116,7 @@ pnpm install
 This installs all dependencies defined in `package.json`. The process typically takes 2-5 minutes depending on your internet speed.
 
 **What gets installed:**
+
 - Next.js 16 and React 19
 - Convex client and Better Auth
 - Tailwind CSS 4 and shadcn/ui components
@@ -155,6 +162,7 @@ npx convex env set SITE_URL http://localhost:3000
 ```
 
 **For Windows** (if openssl is not available):
+
 ```powershell
 # Generate a random base64 string manually
 $secret = [Convert]::ToBase64String((1..32 | ForEach-Object { Get-Random -Minimum 0 -Maximum 256 }))
@@ -163,6 +171,7 @@ npx convex env set SITE_URL http://localhost:3000
 ```
 
 Or simply use any random 32+ character string:
+
 ```bash
 npx convex env set BETTER_AUTH_SECRET "your-very-long-random-secret-string-here-at-least-32-chars"
 ```
@@ -239,6 +248,7 @@ npx convex dashboard
 ```
 
 This opens the Convex web dashboard where you can:
+
 - View and query your tables
 - Monitor function execution
 - Check logs and errors
@@ -254,12 +264,14 @@ Better Auth is pre-configured with Convex integration. The configuration is in `
 ### Current Authentication Setup
 
 **Enabled Features:**
+
 - ✅ Email/password authentication
 - ✅ Session management
 - ✅ Protected routes via middleware
 - ✅ No email verification (for quick development)
 
 **Disabled/Planned:**
+
 - ⏳ Email verification (see [Roadmap](../ROADMAP.md))
 - ⏳ OAuth providers (Google, GitHub)
 - ⏳ Password reset flow
@@ -279,7 +291,7 @@ Edit `convex/auth.config.ts` to customize:
 ```typescript
 export const authConfig = {
   // Require email verification
-  requireEmailVerification: false,  // Change to true
+  requireEmailVerification: false, // Change to true
 
   // Session duration
   session: {
@@ -305,16 +317,19 @@ See [Authentication Guide](./AUTHENTICATION.md) for detailed customization optio
 You need **two terminals**:
 
 **Terminal 1: Convex Backend**
+
 ```bash
 npx convex dev
 ```
 
 **Terminal 2: Next.js Frontend**
+
 ```bash
 pnpm run dev:frontend
 ```
 
 **Or use the combined script** (runs both in parallel):
+
 ```bash
 pnpm run dev
 ```
@@ -328,10 +343,12 @@ pnpm run dev
 ### Hot Reload Behavior
 
 **Frontend (Next.js):**
+
 - Changes to `.tsx`, `.ts`, `.css` files trigger instant hot reload
 - No page refresh needed (Fast Refresh)
 
 **Backend (Convex):**
+
 - Changes to `convex/*.ts` files trigger auto-deploy
 - Functions are hot-swapped without restart
 - Database schema changes are applied automatically
@@ -345,6 +362,7 @@ npx convex codegen
 ```
 
 **When to run this:**
+
 - After schema changes
 - Before running tests
 - If TypeScript errors appear for Convex imports
@@ -356,38 +374,45 @@ npx convex codegen
 ### Step-by-Step Verification Checklist
 
 #### 1. Check Node.js and pnpm
+
 ```bash
 node --version    # Should be 18.x or higher
 pnpm --version    # Should be 8.x or higher
 ```
 
 #### 2. Verify Dependencies Installed
+
 ```bash
 ls node_modules   # Should see many packages
 pnpm list --depth=0
 ```
 
 #### 3. Check Convex Connection
+
 ```bash
 npx convex env list   # Should show BETTER_AUTH_SECRET and SITE_URL
 ```
 
 #### 4. Verify .env.local Created
+
 ```bash
 cat .env.local
 # Expected: NEXT_PUBLIC_CONVEX_URL=https://...
 ```
 
 #### 5. Test Frontend
+
 - Open http://localhost:3000
 - Should see landing page (no errors in browser console)
 
 #### 6. Test Authentication
+
 - Go to `/signup`
 - Create an account
 - Should redirect to `/dashboard` after signup
 
 #### 7. Test Convex Functions
+
 ```bash
 # Run tests
 pnpm run test:once
@@ -396,11 +421,13 @@ pnpm run test:once
 ```
 
 #### 8. Check Convex Dashboard
+
 ```bash
 npx convex dashboard
 ```
 
 Expected tables:
+
 - `authAccount`
 - `authSession`
 - `authUser`

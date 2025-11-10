@@ -24,13 +24,15 @@ Located in `convex/myFunctions.ts` - these demonstrate Convex patterns.
 **Description:** Returns a list of numbers from the database, with optional limit and viewer info.
 
 **Arguments:**
+
 ```typescript
 {
-  count: number  // Maximum number of results to return
+  count: number; // Maximum number of results to return
 }
 ```
 
 **Returns:**
+
 ```typescript
 {
   numbers: Array<{ _id: Id<"numbers">, value: number }>,
@@ -39,11 +41,14 @@ Located in `convex/myFunctions.ts` - these demonstrate Convex patterns.
 ```
 
 **Example Usage:**
+
 ```typescript
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
-const { numbers, viewer } = useQuery(api.myFunctions.listNumbers, { count: 10 });
+const { numbers, viewer } = useQuery(api.myFunctions.listNumbers, {
+  count: 10,
+});
 ```
 
 ---
@@ -55,18 +60,21 @@ const { numbers, viewer } = useQuery(api.myFunctions.listNumbers, { count: 10 })
 **Description:** Adds a new number to the database.
 
 **Arguments:**
+
 ```typescript
 {
-  value: number  // The number to add
+  value: number; // The number to add
 }
 ```
 
 **Returns:**
+
 ```typescript
-Id<"numbers">  // The ID of the newly created number
+Id<"numbers">; // The ID of the newly created number
 ```
 
 **Example Usage:**
+
 ```typescript
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -84,6 +92,7 @@ await addNumber({ value: 42 });
 **Description:** Demonstrates an action that combines database operations with external logic.
 
 **Arguments:**
+
 ```typescript
 {
   first: number,   // First number
@@ -92,11 +101,13 @@ await addNumber({ value: 42 });
 ```
 
 **Returns:**
+
 ```typescript
-null
+null;
 ```
 
 **Example Usage:**
+
 ```typescript
 import { useAction } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -120,6 +131,7 @@ All endpoints are prefixed with `/api/auth/`:
 Create a new user account.
 
 **Request Body:**
+
 ```typescript
 {
   email: string,
@@ -129,6 +141,7 @@ Create a new user account.
 ```
 
 **Response:**
+
 ```typescript
 {
   user: { id: string, email: string },
@@ -141,6 +154,7 @@ Create a new user account.
 Log in an existing user.
 
 **Request Body:**
+
 ```typescript
 {
   email: string,
@@ -149,6 +163,7 @@ Log in an existing user.
 ```
 
 **Response:**
+
 ```typescript
 {
   user: { id: string, email: string },
@@ -161,6 +176,7 @@ Log in an existing user.
 Get the current user's session.
 
 **Response:**
+
 ```typescript
 {
   user: { id: string, email: string, name?: string } | null,
@@ -173,8 +189,11 @@ Get the current user's session.
 Log out the current user.
 
 **Response:**
+
 ```typescript
-{ success: boolean }
+{
+  success: boolean;
+}
 ```
 
 ### Using Auth in Components
@@ -239,6 +258,7 @@ export const myQuery = query({
 ```
 
 **Characteristics:**
+
 - Cannot modify database
 - Automatically cached and reactive
 - Real-time updates to UI
@@ -260,6 +280,7 @@ export const myMutation = mutation({
 ```
 
 **Characteristics:**
+
 - ACID transactions
 - Can read and write
 - Cannot call external APIs
@@ -284,6 +305,7 @@ export const myAction = action({
 ```
 
 **Characteristics:**
+
 - Can call external APIs
 - Cannot directly access database
 - Use `ctx.runQuery/runMutation`
@@ -339,11 +361,13 @@ import { query, mutation } from "./_generated/server";
 
 export const list = query({
   args: {},
-  returns: v.array(v.object({
-    _id: v.id("todos"),
-    text: v.string(),
-    completed: v.boolean(),
-  })),
+  returns: v.array(
+    v.object({
+      _id: v.id("todos"),
+      text: v.string(),
+      completed: v.boolean(),
+    }),
+  ),
   handler: async (ctx) => {
     return await ctx.db.query("todos").collect();
   },
@@ -405,7 +429,9 @@ await createTodo({ text: "Buy milk" });
 export const myFunction = query({
   args: { id: v.id("table") },
   returns: v.object({ name: v.string() }),
-  handler: async (ctx, args) => { /* ... */ },
+  handler: async (ctx, args) => {
+    /* ... */
+  },
 });
 
 // ❌ Bad

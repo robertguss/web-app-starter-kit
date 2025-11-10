@@ -66,11 +66,13 @@ Add to `convex/myFunctions.ts`:
 ```typescript
 export const getTodos = query({
   args: { userId: v.id("users") },
-  returns: v.array(v.object({
-    _id: v.id("todos"),
-    text: v.string(),
-    completed: v.boolean(),
-  })),
+  returns: v.array(
+    v.object({
+      _id: v.id("todos"),
+      text: v.string(),
+      completed: v.boolean(),
+    })
+  ),
   handler: async (ctx, args) => {
     return await ctx.db
       .query("todos")
@@ -139,7 +141,9 @@ export function TodoList({ userId }: { userId: string }) {
 
   return (
     <div>
-      {todos?.map((todo) => <div key={todo._id}>{todo.text}</div>)}
+      {todos?.map((todo) => (
+        <div key={todo._id}>{todo.text}</div>
+      ))}
       <button onClick={handleAdd}>Add Todo</button>
     </div>
   );
@@ -212,7 +216,12 @@ npx shadcn@latest add dialog
 ### Use the Component
 
 ```typescript
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export function MyDialog() {
   return (
@@ -251,9 +260,7 @@ export function TodoCard({ text, completed, onToggle }: TodoCardProps) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <button onClick={onToggle}>
-          {completed ? "Undo" : "Complete"}
-        </button>
+        <button onClick={onToggle}>{completed ? "Undo" : "Complete"}</button>
       </CardContent>
     </Card>
   );
@@ -350,7 +357,7 @@ Run tests:
 pnpm run test
 ```
 
-See [Testing Guide](../convex/TESTING.md) for comprehensive patterns.
+See [Testing Guide](./TESTING.md) for comprehensive patterns.
 
 ---
 
@@ -413,7 +420,11 @@ Always validate user permissions:
 ```typescript
 export const getMyTodos = query({
   args: {},
-  returns: v.array(v.object({ /* ... */ })),
+  returns: v.array(
+    v.object({
+      /* ... */
+    })
+  ),
   handler: async (ctx) => {
     const user = await authComponent.getAuthUser(ctx);
     if (!user) throw new Error("Unauthorized");

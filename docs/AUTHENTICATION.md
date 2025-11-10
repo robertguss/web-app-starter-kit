@@ -7,6 +7,7 @@ Complete guide to authentication in the AI Starter Kit using Better Auth + Conve
 ## Overview
 
 This starter uses **Better Auth** with native Convex integration for:
+
 - Email/password authentication
 - Session management
 - Protected routes
