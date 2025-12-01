@@ -1,0 +1,121 @@
+# Checkpoint Validation Schema for Foundations 01-Setup
+# This defines the validation criteria for completing the setup lesson
+
+lesson: foundations/01-setup
+name: Environment Setup
+description: Validates that the development environment is properly configured
+
+# Layer 1: Automated Checks
+# These run without user interaction
+automated:
+  files_exist:
+    - path: "package.json"
+      description: "Project package file exists"
+
+    - path: "node_modules"
+      type: "directory"
+      description: "Dependencies installed"
+
+    - path: ".env.local"
+      description: "Environment configuration created"
+
+    - path: "convex/_generated/api.d.ts"
+      description: "Convex types generated"
+
+    - path: "convex/_generated/server.d.ts"
+      description: "Convex server types generated"
+
+  file_contains:
+    - path: ".env.local"
+      patterns:
+        - "CONVEX_DEPLOYMENT="
+        - "NEXT_PUBLIC_CONVEX_URL="
+      description: "Convex environment variables configured"
+
+  commands:
+    - command: "node --version"
+      expect_pattern: "v2[0-9]\\."
+      description: "Node.js v20+ installed"
+
+    - command: "pnpm --version"
+      expect_pattern: "[89]\\."
+      description: "pnpm installed"
+
+    - command: "pnpm run build"
+      expect_success: true
+      timeout: 120000
+      description: "Project builds successfully"
+
+# Layer 2: Browser Validation
+# These require a running dev server and browser interaction
+browser:
+  checks:
+    - url: "http://localhost:3000"
+      timeout: 10000
+      expect:
+        page_loads: true
+        status_code: 200
+      description: "App loads in browser"
+
+# Layer 3: Conversational Confirmation
+# These require asking the student
+conversational:
+  questions:
+    - id: "convex_dashboard"
+      question: "Can you see your project in the Convex dashboard at dashboard.convex.dev?"
+      expect: "yes"
+      help_if_no: |
+        Try these steps:
+        1. Go to https://dashboard.convex.dev
+        2. Make sure you're logged into the same account you used with `npx convex dev`
+        3. Refresh the page
+        4. If still not showing, run `npx convex dev` again in your terminal
+
+    - id: "both_terminals"
+      question: "Do you have both terminals running - one with `npx convex dev` and one with `pnpm dev`?"
+      expect: "yes"
+      help_if_no: |
+        You need two terminals running:
+        1. One running `npx convex dev` (should show "Watching for changes...")
+        2. One running `pnpm dev` (should show "Ready" and the localhost URL)
+
+        Open a new terminal window/tab for each command.
+
+    - id: "browser_loads"
+      question: "Can you see the MVPKit app at http://localhost:3000 in your browser?"
+      expect: "yes"
+      help_if_no: |
+        If the page won't load:
+        1. Make sure `pnpm dev` is running without errors
+        2. Try a different browser or incognito window
+        3. Check if port 3000 is already in use (try `lsof -i :3000` on Mac/Linux)
+
+# Completion Criteria
+completion:
+  require_all_automated: true
+  require_all_browser: true
+  require_all_conversational: true
+
+  on_success:
+    message: |
+      🎉 All checks passed! Your development environment is fully configured.
+
+      You now have:
+      - Node.js and pnpm for running JavaScript
+      - Convex connected for your backend
+      - A working app at localhost:3000
+
+      You're ready for the next lesson!
+
+    update_progress:
+      stepsCompleted: ['init', 'tools', 'configure', 'convex', 'dev-server', 'checkpoint']
+      lastStep: 'checkpoint'
+      lessonComplete: true
+
+  on_failure:
+    message: |
+      Some checks didn't pass. Let's fix them before moving on.
+
+      Review the failed checks above and I'll help you resolve each one.
+
+    action: "identify_failed_checks_and_guide_resolution"
