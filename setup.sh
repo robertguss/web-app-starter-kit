@@ -235,7 +235,7 @@ configure_environment() {
     fi
 
     # Extract deployment name (e.g., "shiny-platypus-495" from "https://shiny-platypus-495.convex.cloud")
-    DEPLOYMENT_NAME=$(echo "$CONVEX_URL" | sed 's|https://||' | sed 's|.convex.cloud||')
+    DEPLOYMENT_NAME=$(echo "$CONVEX_URL" | sed 's|https://||' | sed 's|\.convex\.cloud||')
     CONVEX_SITE_URL="https://${DEPLOYMENT_NAME}.convex.site"
 
     print_info "Detected deployment: $DEPLOYMENT_NAME"
