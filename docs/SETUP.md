@@ -140,7 +140,7 @@ This project uses two types of environment variables:
    - Used by frontend
    - Only `NEXT_PUBLIC_*` variables are exposed to the browser
 
-### Create .env.local (Auto-Generated)
+### Create .env.local (Partially Auto-Generated)
 
 When you run `npx convex dev`, a `.env.local` file is automatically created with:
 
@@ -149,7 +149,18 @@ When you run `npx convex dev`, a `.env.local` file is automatically created with
 NEXT_PUBLIC_CONVEX_URL=https://your-deployment-name.convex.cloud
 ```
 
-**Do not manually edit this file** unless you know what you're doing.
+**You must manually add** `NEXT_PUBLIC_CONVEX_SITE_URL`:
+
+```bash
+# Convex HTTP endpoint for auth proxy (MUST be added manually)
+NEXT_PUBLIC_CONVEX_SITE_URL=https://your-deployment-name.convex.site
+```
+
+> **Critical**: The `NEXT_PUBLIC_CONVEX_SITE_URL` must point to your Convex HTTP endpoint (`.convex.site`), NOT `localhost:3000`. This URL is used by the Next.js auth handler to proxy authentication requests to Convex. If set incorrectly to `localhost:3000`, it creates an infinite loop causing 500 errors with ~10 second timeouts.
+
+**How to find your deployment name:**
+- Look at `NEXT_PUBLIC_CONVEX_URL` - if it's `https://shiny-platypus-495.convex.cloud`
+- Then `NEXT_PUBLIC_CONVEX_SITE_URL` should be `https://shiny-platypus-495.convex.site`
 
 ### Set Convex Environment Variables
 
@@ -397,8 +408,12 @@ npx convex env list   # Should show BETTER_AUTH_SECRET and SITE_URL
 
 ```bash
 cat .env.local
-# Expected: NEXT_PUBLIC_CONVEX_URL=https://...
+# Expected:
+# NEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud
+# NEXT_PUBLIC_CONVEX_SITE_URL=https://your-deployment.convex.site
 ```
+
+> **Important**: Verify `NEXT_PUBLIC_CONVEX_SITE_URL` ends in `.convex.site` (NOT `.convex.cloud` or `localhost:3000`)
 
 #### 5. Test Frontend
 
