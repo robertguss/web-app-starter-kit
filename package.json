@@ -30,6 +30,7 @@
   ],
   "private": false,
   "scripts": {
+    "setup": "bash setup.sh",
     "dev": "npm-run-all --parallel dev:frontend dev:backend",
     "dev:frontend": "next dev --turbo",
     "dev:backend": "convex dev",

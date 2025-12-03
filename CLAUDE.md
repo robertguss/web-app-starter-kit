@@ -94,7 +94,7 @@ npx convex codegen                          # Generate TypeScript types (require
 
 ```text
 /app                        # Next.js App Router pages
-  /api                      # API routes (if any)
+  /api/auth/[...all]       # Auth proxy route (forwards to Convex)
   /dashboard               # Protected dashboard pages
   /login                   # Login page
   /signup                  # Signup page
@@ -175,6 +175,10 @@ const user = await authComponent.getAuthUser(ctx);
 **Next.js (.env.local)**:
 
 - `NEXT_PUBLIC_CONVEX_URL` - Convex deployment URL (auto-created by `npx convex dev`)
+- `NEXT_PUBLIC_CONVEX_SITE_URL` - Convex HTTP endpoint for auth proxy (MUST be manually added)
+  - **CRITICAL**: Must end in `.convex.site` (e.g., `https://your-deployment.convex.site`)
+  - **DO NOT** set this to `localhost:3000` - it will cause infinite loops and 500 errors
+  - Used by `app/api/auth/[...all]/route.ts` to proxy auth requests to Convex
 
 ### shadcn/ui Configuration
 
@@ -217,6 +221,8 @@ Reference `.cursor/rules/convex_rules.mdc` for detailed guidelines. Key points:
 - Session validation happens via `/api/auth/get-session` endpoint
 - Protected routes use middleware to check session and redirect to `/login` if unauthenticated
 - Auth data is stored in Convex via the Better Auth component (not in separate auth tables you manage)
+- **Auth Proxy**: The `app/api/auth/[...all]/route.ts` file proxies all auth requests to Convex via `NEXT_PUBLIC_CONVEX_SITE_URL`
+  - If you see 500 errors with ~10 second timeouts on `/api/auth/*`, check that `NEXT_PUBLIC_CONVEX_SITE_URL` is set correctly (must be `.convex.site`, NOT `localhost:3000`)
 
 ## Testing Convex Functions
 

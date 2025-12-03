@@ -87,12 +87,40 @@ npx convex codegen
 
 ## Authentication Issues
 
+### 500 errors on `/api/auth/get-session` with ~10 second timeouts
+
+**Symptoms:**
+
+- Repeated 500 errors in the terminal: `GET /api/auth/get-session 500 in 10.6s`
+- Auth pages hang or fail to load
+- Signup/login doesn't work
+
+**Cause:** `NEXT_PUBLIC_CONVEX_SITE_URL` is set to `http://localhost:3000` instead of your Convex HTTP endpoint, causing an infinite loop.
+
+**Explanation:** The Next.js auth handler at `app/api/auth/[...all]/route.ts` proxies auth requests to Convex. When `NEXT_PUBLIC_CONVEX_SITE_URL` is set to `localhost:3000`, it proxies back to itself, creating an infinite loop until timeout.
+
+**Solution:**
+
+1. Open `.env.local`
+2. Find or add `NEXT_PUBLIC_CONVEX_SITE_URL`
+3. Set it to your Convex site URL:
+   ```bash
+   # WRONG - causes infinite loop:
+   NEXT_PUBLIC_CONVEX_SITE_URL=http://localhost:3000
+
+   # CORRECT - use your Convex HTTP endpoint:
+   NEXT_PUBLIC_CONVEX_SITE_URL=https://your-deployment.convex.site
+   ```
+4. The deployment name should match `NEXT_PUBLIC_CONVEX_URL` but with `.site` instead of `.cloud`
+5. Restart your dev server
+
 ### Can't sign up or log in
 
 **Checklist:**
 
 - [ ] `BETTER_AUTH_SECRET` is set
 - [ ] `SITE_URL` matches your dev URL
+- [ ] `NEXT_PUBLIC_CONVEX_SITE_URL` ends in `.convex.site` (NOT `localhost:3000`)
 - [ ] Convex dev is running
 - [ ] No browser console errors
 

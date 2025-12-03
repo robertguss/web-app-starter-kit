@@ -7,7 +7,8 @@ Get the AI Starter Kit running on your machine in **5 minutes**. This guide will
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Installation Steps](#installation-steps)
+- [Automated Setup (Recommended)](#automated-setup-recommended)
+- [Manual Installation Steps](#manual-installation-steps)
 - [Verification](#verification)
 - [What's Next?](#whats-next)
 - [Troubleshooting Quick Setup](#troubleshooting-quick-setup)
@@ -44,7 +45,37 @@ Before you begin, make sure you have the following installed:
 
 ---
 
-## Installation Steps
+## Automated Setup (Recommended)
+
+The easiest way to get started is with our automated setup script. It handles everything for you!
+
+```bash
+# Clone the repository
+git clone https://github.com/robertguss/ai-starter-kit.git
+cd ai-starter-kit
+
+# Run the setup script
+./setup.sh
+```
+
+**What the setup script does:**
+
+1. ✅ Checks prerequisites (Node.js 18+, pnpm)
+2. ✅ Installs pnpm automatically if missing
+3. ✅ Installs all dependencies
+4. ✅ Guides you through Convex authentication (browser login)
+5. ✅ Configures all environment variables automatically
+6. ✅ Starts the development servers
+
+> **Windows Users**: Run `bash setup.sh` in Git Bash or WSL.
+
+After the script completes, your dev server will be running at [http://localhost:3000](http://localhost:3000)!
+
+---
+
+## Manual Installation Steps
+
+If you prefer to set things up manually, or if the automated setup doesn't work for your environment, follow these steps:
 
 ### Step 1: Clone the Repository
 
@@ -89,6 +120,13 @@ npx convex dev
    - Create a `.env.local` file with `NEXT_PUBLIC_CONVEX_URL`
    - Start the Convex development server
    - Begin watching for changes in your `convex/` directory
+
+4. **Important**: After Convex creates your `.env.local` file, you need to add `NEXT_PUBLIC_CONVEX_SITE_URL`:
+   - Open `.env.local` in your editor
+   - Add: `NEXT_PUBLIC_CONVEX_SITE_URL=https://YOUR-DEPLOYMENT-NAME.convex.site`
+   - Replace `YOUR-DEPLOYMENT-NAME` with your actual deployment name (same as in `NEXT_PUBLIC_CONVEX_URL`, but with `.site` instead of `.cloud`)
+
+   > **Warning**: Do NOT set this to `http://localhost:3000` - this will cause infinite loops and 500 errors!
 
 **Leave this terminal running!** The Convex dev server needs to stay active.
 
@@ -258,6 +296,19 @@ const greeting = useQuery(api.myFunctions.sayHello, { name: "World" });
 - You should see `BETTER_AUTH_SECRET` and `SITE_URL`
 - Make sure `SITE_URL` matches your development URL (usually `http://localhost:3000`)
 
+### Problem: 500 errors on `/api/auth/get-session` (10+ second timeouts)
+
+**Cause:** `NEXT_PUBLIC_CONVEX_SITE_URL` is set to `localhost:3000` instead of your Convex site URL, causing an infinite loop.
+
+**Solution:**
+
+1. Open `.env.local`
+2. Find `NEXT_PUBLIC_CONVEX_SITE_URL`
+3. Change it from `http://localhost:3000` to `https://YOUR-DEPLOYMENT.convex.site`
+4. Restart your dev server
+
+The `.convex.site` URL is your Convex HTTP endpoint - it should match your deployment name from `NEXT_PUBLIC_CONVEX_URL` but with `.site` instead of `.cloud`.
+
 ### Problem: Port 3000 already in use
 
 **Solution:**
@@ -311,7 +362,8 @@ const greeting = useQuery(api.myFunctions.sayHello, { name: "World" });
 - [ ] Project cloned
 - [ ] Dependencies installed (`pnpm install`)
 - [ ] Convex initialized (`npx convex dev`)
-- [ ] Environment variables set (BETTER_AUTH_SECRET, SITE_URL)
+- [ ] `NEXT_PUBLIC_CONVEX_SITE_URL` set correctly in `.env.local` (must end in `.convex.site`)
+- [ ] Convex environment variables set (BETTER_AUTH_SECRET, SITE_URL)
 - [ ] Dev server running (`pnpm run dev`)
 - [ ] Can access http://localhost:3000
 - [ ] Can sign up and log in
