@@ -119,7 +119,6 @@ npx convex codegen                          # Generate TypeScript types (require
   myFunctions.test.ts      # Example test file
   schema.ts                # Database schema
   test.setup.ts            # Test configuration for convex-test
-  TESTING.md               # Testing documentation
   convex.config.ts         # Convex configuration
 
 /lib                       # Shared utilities
@@ -214,6 +213,21 @@ Reference `.cursor/rules/convex_rules.mdc` for detailed guidelines. Key points:
 5. **TypeScript**: Be strict with `Id<"tableName">` types. Use `as const` for string literals in unions
 
 6. **No ctx.db in actions**: Actions cannot access the database directly, use `ctx.runQuery()` or `ctx.runMutation()`
+
+## Convex Helpers Library
+
+This project includes **convex-helpers** (v0.1.108) for utility functions and common patterns. Always prefer these helpers over custom implementations.
+
+**Key Categories:**
+
+- **Relationships**: `getOneFromOrThrow`, `getManyFrom`, `getManyViaOrThrow` - traverse database relationships
+- **Validators**: `nullable`, `literals`, `partial`, `brandedString` - enhanced validators beyond standard `v.*`
+- **Custom Functions**: `customQuery`, `customMutation` - add auth, RLS, or custom context to all functions
+- **Pagination**: `getPage`, `paginator`, `stream` - advanced pagination patterns
+- **Utilities**: `asyncMap`, `pick`, `omit`, `nullThrows`, `withoutSystemFields`
+- **React**: Enhanced `useQuery` with status, query caching, session tracking
+
+See **`docs/CONVEX_HELPERS.md`** for comprehensive documentation, import paths, and examples.
 
 ## Authentication Notes
 
@@ -382,4 +396,4 @@ See `convex/myFunctions.test.ts` for a comprehensive example covering:
 
 ### More Information
 
-For detailed testing documentation, patterns, and best practices, see **`convex/TESTING.md`**.
+For detailed testing documentation, patterns, and best practices, see **`docs/TESTING.md`**.

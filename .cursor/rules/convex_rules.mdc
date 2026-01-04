@@ -197,6 +197,91 @@ Note: `paginationOpts` is an object with the following properties:
 - `v.bigint()` is deprecated for representing signed 64-bit integers. Use `v.int64()` instead.
 - Use `v.record()` for defining a record type. `v.map()` and `v.set()` are not supported.
 
+## Convex Helpers Patterns
+
+This project uses **convex-helpers** for common patterns. Prefer these over custom implementations.
+
+### Relationship Queries
+
+Instead of writing manual lookups, use relationship helpers:
+
+```typescript
+import { getManyFrom, getOneFromOrThrow } from "convex-helpers/server/relationships";
+
+// Get all posts by an author (one-to-many)
+const posts = await getManyFrom(ctx.db, "posts", "by_authorId", author._id);
+
+// Get a single author for a post (throws if not found)
+const author = await getOneFromOrThrow(ctx.db, "users", "by_id", post.authorId);
+
+// Many-to-many via join table
+import { getManyViaOrThrow } from "convex-helpers/server/relationships";
+const tags = await getManyViaOrThrow(ctx.db, "postTags", "tags", "tagId", "by_postId", post._id);
+```
+
+### Enhanced Validators
+
+Use helpers instead of verbose validator patterns:
+
+```typescript
+import { nullable, literals, partial } from "convex-helpers/validators";
+
+// Instead of v.union(v.null(), v.string())
+const nullableString = nullable(v.string());
+
+// Instead of v.union(v.literal("a"), v.literal("b"), v.literal("c"))
+const status = literals("pending", "active", "completed");
+
+// Make all fields optional for updates
+const userUpdates = v.object(partial({ name: v.string(), email: v.string() }));
+```
+
+### Custom Functions for Auth
+
+Add authentication to all functions:
+
+```typescript
+import { customQuery, customMutation } from "convex-helpers/server/customFunctions";
+
+const authedQuery = customQuery(query, {
+  args: {},
+  input: async (ctx, args) => {
+    const user = await getAuthUser(ctx);
+    if (!user) throw new Error("Unauthenticated");
+    return { ctx: { ...ctx, user }, args };
+  },
+});
+
+// Use it like this:
+export const getProfile = authedQuery({
+  args: {},
+  handler: async (ctx) => ctx.db.get(ctx.user._id),
+});
+```
+
+### Utility Functions
+
+Common utilities for data manipulation:
+
+```typescript
+import { asyncMap, nullThrows, withoutSystemFields, pick, omit } from "convex-helpers";
+
+// Process arrays concurrently
+const posts = await asyncMap(userIds, (id) => getManyFrom(ctx.db, "posts", "by_authorId", id));
+
+// Throw if document is null (with type guard)
+const user = nullThrows(await ctx.db.get(userId), "User not found");
+
+// Clone without system fields
+const clone = withoutSystemFields(await ctx.db.get(docId));
+
+// Select or exclude fields
+const publicUser = pick(user, ["name", "email"]);
+const safeUser = omit(user, ["password", "apiKey"]);
+```
+
+For complete documentation, see `docs/CONVEX_HELPERS.md`.
+
 ## Schema guidelines
 
 - Always define your schema in `convex/schema.ts`.
