@@ -245,10 +245,10 @@ import { customQuery, customMutation } from "convex-helpers/server/customFunctio
 
 const authedQuery = customQuery(query, {
   args: {},
-  input: async (ctx) => {
+  input: async (ctx, args) => {
     const user = await getAuthUser(ctx);
     if (!user) throw new Error("Unauthenticated");
-    return { ctx: { ...ctx, user }, args: {} };
+    return { ctx: { ...ctx, user }, args };
   },
 });
 
